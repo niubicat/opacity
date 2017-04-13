@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>color</title>
+    <style>
+        body, li {
+            list-style: none;
+        }
+        div{
+            background-color: red;
+            opacity: 0.3;
+            filter: Alpha(opacity = 30); /*ie8或更早的浏览器*/
+        }
+        #aa{
+            width: 150px;
+        }
+    </style>
+    <script>
+        function ChangeOpacity(event){
+            console.log(event.target);
+            var x=document.getElementById('aa');
+            console.log(x.selectedIndex);
+            var leng = document.getElementById('aa').options.length;
+            console.log(leng);
+            console.log(document.getElementsByClassName('bb')[x.selectedIndex].value);
+
+
+            for(var i =0; i<leng; i++){
+                document.getElementsByClassName('bb')[i].removeAttribute('selected', '');
+                document.getElementsByClassName('bb')[x.selectedIndex].setAttribute('selected', 'selected');
+                var divOpacity = document.getElementsByClassName('bb')[x.selectedIndex].value;
+                document.getElementsByClassName('cc')[0].style.opacity = divOpacity;
+            }
+        }
+    </script>
+    <script>
+        function test(e){
+            console.log(e.target);
+        }
+    </script>
+</head>
+<body>
+    <div class="cc">
+        本元素的不透明度是 0.3。请注意，文本和背景色都受到不透明级别的影响。
+    </div>
+    <p id="p1">请从下面的例子中选择一个值，以改变此元素的不透明度。</p>
+    <span onclick="test(event)">odkdkdk</span> <!--调用函数必须传参event-->
+    <select onclick="ChangeOpacity(event)"  id="aa" size="5">
+        <option class ="bb" >0</option>
+        <option class ="bb" >0.2</option>
+        <option class ="bb" >0.5</option>
+        <option class ="bb" >0.8</option>
+        <option class ="bb" selected="selected" >1</option>
+    </select>
+
+
+</body>
+</html>
